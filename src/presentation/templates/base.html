@@ -1,0 +1,48 @@
+
+ <!DOCTYPE html>
+ <html lang="nl">
+ <head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <title>{% block title %} smart running system {% endblock %}</title>
+
+ </head>
+ <body>
+    
+    <!-- Menu -->
+    <nav>
+    <ul>
+        <li><a href="/user/dashboard">home PAGINA</a></li>
+        {% block nav%}{%endblock%}
+        <li><a href="/admin/trainingen">trainer</a></li>
+       
+    </ul>   
+    </nav>
+    <br>
+
+    
+    <!-- FLASH BERICHTEN -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+            {% for category, message in messages %}
+                {% if category == "success" %}
+                    <p style="color: green;"> {{ message }}</p>
+                {% else %}
+                    <p style="color: red;"> {{ message }}</p>
+                {% endif %}
+            {% endfor %}
+        {% endwith %}
+
+    <!-- PAGINA INHOUD -->
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer>
+        <p>Made by Alexander 6ICW</p>
+    </footer>
+ </body>
+ </html>

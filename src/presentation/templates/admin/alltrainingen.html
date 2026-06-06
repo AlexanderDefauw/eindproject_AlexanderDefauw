@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}trainingen{% endblock %}
+{%block nav %} <li><a href="/admin/trainingen">trainingen</a></li>
+
+<li><a href="/admin/modules">modules</a></li>
+<li><a href="/admin/gebruikers">gebruikers</a></li>
+{%endblock%}
+{% block content %}
+    <table class="center">
+  <tr>
+    <th>Id</th>
+    <th>Atleet_id</th>
+    <th>Trainings_id</th>
+    <th>datum</th>
+    <th>Bekijk</th>
+    <th>Verwijder</th>
+  </tr>
+{% for d in data  %}
+                <tr>
+                    <td>{{ d[0] }}</td>
+                    <td>{{ d[3] }}</td>
+                    <td>{{ d[4] }}</td>
+                    <td>{{ d[1] }}</td>
+                    <td><form method="POST" action="/user/bekijk_training"
+                    >
+         
+                    <input type="hidden" name="atleet_id" value= "{{ d[3] }}"  >
+                    <input type="hidden" name="trainings_id" value = "{{ d[4] }} "  >
+                    <button type="submit">Bekijk training</button>
+                    </form>
+                </td>
+                <td><form method="POST" action="/admin/verwijder_training" onsubmit="return confirm('weet u het zeker?')">
+         
+                    <input type="hidden" name="atleet_id" value= "{{ d[3] }}"  >
+                    <input type="hidden" name="trainings_id" value = "{{ d[4] }} "  >
+                    <button type="submit">Verwijder_training</button>
+                    </form></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+ {% endblock %}

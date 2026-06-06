@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}Training{% endblock %}
+
+{% block content %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0"></script>
+<form method="POST" action="/user/gebruiker">
+         
+                    
+                    <input type="hidden" name="naam" value= "{{ gebruikersnaam }}"  >
+                    <div class="left">
+                      <button type="submit">Go back</button>
+                    </div>
+                    </form>
+<h1>Training van {{gebruikersnaam}}</h1>
+<canvas id="myChart" style="width:100%;max-width:600px" class="center"></canvas>
+
+<script>
+const xValues = {{data_x|tojson}};
+const yValues = {{data_y|tojson}};
+
+const ctx = document.getElementById('myChart');
+
+new Chart(ctx, {
+  type: "line",
+  data: {
+    labels: xValues,
+    datasets: [{
+      fill: true,
+      lineTension: 0,
+      backgroundColor: "rgba(0,0,255,1.0)",
+      borderColor: "rgba(0,0,255,0.1)",
+      data: yValues
+    }]
+  },
+  options: {
+    plugins: {
+      legend: {display:false},
+      title: {
+        display: true,
+        text: "snelheid per afstand",
+        font: {size:16}
+      }
+    }
+  }
+});
+</script>
+
+
+
+<h2>gemiddelde snelheid {{gemiddeldesnelheid}} km/h</h2>
+<h2>afgelegde afstand {{data[-1][6]}} m</h2>
+<h2>verstreken tijd {{verstreken_tijd}} minuten</h2>
+ {% endblock %}

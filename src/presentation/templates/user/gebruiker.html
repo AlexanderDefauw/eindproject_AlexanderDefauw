@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}trainingen van {{naam}}{% endblock %}
+
+{% block content %}
+<h1>trainingen van {{naam}}</h1>
+    <table class="center">
+  <tr>
+    <th>Id</th>
+    <th>datum</th>
+    <th>Training</th>
+
+    
+  </tr>
+{% for training in trainingen  %}
+                <tr>
+                    <td>{{ training[4] }}</td>
+                    <td>{{ training[1] }}</td>
+                    <td><form method="POST" action="/user/bekijk_training">
+         
+                    <input type="hidden" name="atleet_id" value= "{{ training[3] }}">
+                    <input type="hidden" name="trainings_id" value= "{{ training[4] }}"  >
+                    <input type="hidden" name="naam" value= "{{ naam }}"  >
+                    <button type="submit">Training</button>
+                    </form></td>
+                   
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+ {% endblock %}

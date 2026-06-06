@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block title %}gebruikers{% endblock %}
+{%block nav %} <li><a href="/admin/trainingen">trainingen</a></li>
+
+<li><a href="/admin/modules">modules</a></li>
+<li><a href="/admin/gebruikers">gebruikers</a></li>
+{%endblock%}
+{% block content %}
+<h1>beheer atleten</h1>
+
+<div class="form">
+    <form method="POST" action="/admin/gebruiker/toevoegen">
+            <label>gebruikersnaam
+                <input type="text" name="gebruikersnaam" placeholder="gebruikersnaam">
+            </label>
+            <label>voornaam
+                <input type="text" name="voornaam" placeholder="voornaam">
+            </label>
+            <label>achternaam
+                <input type="text" name="achternaam" placeholder="achternaam">
+            </label>
+            <label>geboortedatum
+                <input type="text" name="geboortedatum" placeholder="geboortedatum">
+            </label>
+            <button type="submit">Toevoegen</button>
+        </form>
+</div>
+
+    <table class="center">
+  <tr>
+    <th>Atleet_id</th>
+    <th>Gebruikersnaam</th>
+    <th>Voornaam</th>
+    <th>Achternaam</th>
+    <th>Geboortedatum</th>
+    <th>Bekijk profiel</th>
+    <th>Verwijder_gebruiker</th>
+  </tr>
+{% for gebruiker in gebruikers  %}
+                <tr>
+                    <td>{{ gebruiker[0] }}</td>
+                    <td>{{ gebruiker[1] }}</td>
+                    <td>{{ gebruiker[2] }}</td>
+                    <td>{{ gebruiker[3] }}</td>
+                    <td>{{ gebruiker[4] }}</td>
+                    <td><form method="POST" action="/user/gebruiker">
+         
+                    <input type="hidden" name="atleet_id" value= "{{ gebruiker[0] }}"  >
+                    <input type="hidden" name="naam" value= "{{ gebruiker[1] }}"  >
+                    <button type="submit">Profiel</button>
+                    </form></td>
+
+                    <td><form method="POST" action="/admin/gebruiker/verwijderen" 
+                    onsubmit="return confirm('weet u het zeker?')">
+            
+                
+                    <input type="hidden" name="naam" value="{{ gebruiker[1] }}">
+            
+                        <button type="submit">Verwijder</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+ {% endblock %}

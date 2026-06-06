@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}home pagina{% endblock %}
+
+{% block content %}
+<h1>Onze atleten</h1>
+
+    <table class="center">
+  <tr>
+    <th>Atleet_id</th>
+    <th>Gebruikersnaam</th>
+    <th>Voornaam</th>
+    <th>Achternaam</th>
+    <th>Geboortedatum</th>
+    <th>Bekijk profiel</th>
+  </tr>
+{% for gebruiker in gebruikers  %}
+                <tr>
+                    <td>{{ gebruiker[0] }}</td>
+                    <td>{{ gebruiker[1] }}</td>
+                    <td>{{ gebruiker[2] }}</td>
+                    <td>{{ gebruiker[3] }}</td>
+                    <td>{{ gebruiker[4] }}</td>
+                    <td><form method="POST" action="/user/gebruiker">
+         
+                    <input type="hidden" name="atleet_id" value= "{{ gebruiker[0] }}"  >
+                    <input type="hidden" name="naam" value= "{{ gebruiker[1] }}"  >
+                    <button type="submit">Profiel</button>
+                    </form></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+ {% endblock %}

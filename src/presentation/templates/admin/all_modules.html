@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}module lijst{% endblock %}
+{%block nav %} <li><a href="/admin/trainingen">trainingen</a></li>
+
+<li><a href="/admin/modules">modules</a></li>
+<li><a href="/admin/gebruikers">gebruikers</a></li>
+{%endblock%}
+{% block content %}
+<div class="form">
+    <form method="POST" action="/admin/module/toevoegen">
+            <label>ID
+                <input type="text" name="ID" placeholder="ID">
+            </label>
+            <button type="submit">Toevoegen</button>
+        </form>
+</div>
+    <table class="center">
+  <tr>
+    <th>Id</th>
+    <th>Ledstatus</th>
+    <th>verwijder</th>
+  </tr>
+{% for d in modules  %}
+                <tr>
+                    <td>{{ d[0] }}</td>
+                    <td>{{ d[1] }}</td>
+                    
+
+                    <td><form method="POST" action="/admin/module/verwijder" 
+                    onsubmit="return confirm('weet u het zeker?')">
+            
+                
+                    <input type="hidden" name="ID" value="{{ d[0] }}">
+            
+                        <button type="submit">Verwijder</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+ {% endblock %}
