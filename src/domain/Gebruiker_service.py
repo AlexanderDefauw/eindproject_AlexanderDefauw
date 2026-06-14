@@ -29,7 +29,9 @@ class gebruikerservice:
             raise ValueError("voornaan mag alleen uit letters bestaan")
         if achternaam.isalpha() == False:
             raise ValueError("achternaam mag alleen uit letters bestaan")
-        self.Data_base.voeg_gebruiker_toe(gebruikersnaam=gebruikersnaam,voornaam=voornaam,achternaam=achternaam,geboortedatum=geboortedatum)
-
+        try:
+            self.Data_base.voeg_gebruiker_toe(gebruikersnaam=gebruikersnaam,voornaam=voornaam,achternaam=achternaam,geboortedatum=geboortedatum)
+        except:
+            raise ValueError("er is een fout opgelopen bij het toevoegen van de gebruiker")
     def verwijder_gebruiker(self,gebruikersnaam):
         self.Data_base.verwijder_gebruiker(gebruikersnaam=gebruikersnaam)

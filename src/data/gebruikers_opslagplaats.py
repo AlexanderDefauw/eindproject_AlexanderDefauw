@@ -62,7 +62,8 @@ class gebruikers_database:
     def voeg_gebruiker_toe(self, gebruikersnaam, voornaam, achternaam, geboortedatum):
         conn = sqlite3.connect(self.DB_PATH)
         c = conn.cursor()
-        c.execute("INSERT OR IGNORE INTO gebruikers (gebruikersnaam, voornaam, achternaam, geboortedatum) VALUES ( ?, ?, ? , ?)",
+        
+        c.execute("INSERT INTO gebruikers (gebruikersnaam, voornaam, achternaam, geboortedatum) VALUES ( ?, ?, ? , ?)",
         (gebruikersnaam, voornaam, achternaam, geboortedatum))
         conn.commit()
         conn.close()

@@ -88,6 +88,16 @@ input[type=text]{
   border-radius: 7px;
   box-sizing: border-box;
 }
+input[type=date]{
+  margin: 0 auto;
+  width: 100%;
+  padding: 8px;
+  margin: 4px 0;
+  display: inline-block;
+  border: 1px solid #c4c0d4;;
+  border-radius: 7px;
+  box-sizing: border-box;
+}
 .centerdiv{
   display: flex;
   justify-content: center;

@@ -85,15 +85,15 @@ def create_app():
     def locatie_toevoegen():
         
         api_key:str = request.form.get("api_key","0")
-        laltidude:str = request.form.get("lann","0")
-        longitude:str = request.form.get("longal","0")
-        snelheid:str = request.form.get("snelheid","0")
-        atleet_id:str = request.form.get("atleet_id","")
+        laltidude = request.form.get("lann","0")
+        longitude = request.form.get("longal","0")
+        snelheid = request.form.get("snelheid","0")
+        atleet_id = request.form.get("atleet_id","")
         
-        afstand:str = request.form.get("afstand","0")
+        afstand = request.form.get("afstand","0")
         Loopmodule = request.form.get("loopmodule","0")
-        trainings_nummer:str = request.form.get("trainings_nummer","")
-        time:str = request.form.get("time","0")
+        trainings_nummer = request.form.get("trainings_nummer","")
+        time = request.form.get("time","0")
         
         
         try:
